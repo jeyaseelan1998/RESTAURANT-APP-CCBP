@@ -8,6 +8,7 @@ import './index.css'
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [response, setResponse] = useState([])
+  const [restaurantName, setRestaurantName] = useState('')
   const [activeCategoryId, setActiveCategoryId] = useState('')
 
   const [cartItems, setCartItems] = useState([])
@@ -70,6 +71,7 @@ const Home = () => {
     setResponse(updatedData)
     setActiveCategoryId(updatedData[0].menuCategoryId)
     setIsLoading(false)
+    setRestaurantName(data[0].restaurant_name)
   }
 
   useEffect(() => {
@@ -135,7 +137,7 @@ const Home = () => {
     renderSpinner()
   ) : (
     <div className="home-background">
-      <Header cartItems={cartItems} />
+      <Header restaurantName={restaurantName} cartItems={cartItems} />
       <ul className="m-0 ps-0 d-flex tab-container">{renderTabMenuList()}</ul>
       {renderDishes()}
     </div>
